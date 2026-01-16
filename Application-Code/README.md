@@ -1,4 +1,5 @@
 ### Phase 1: Write dockerfiles
+Write dockerfiles, create image and push to dockerhub. Ran the application on browser to ensure app is working and correct image is pushed to dockerhub.
 
 𝗗𝗼𝗰𝗸𝗲𝗿𝗶𝘇𝗶𝗻𝗴 𝗮 𝗠𝗘𝗥𝗡 𝗮𝗽𝗽 — 𝗣𝗵𝗮𝘀𝗲 𝟭 𝗼𝗳 𝗮 𝗳𝘂𝗹𝗹 𝗗𝗲𝘃𝗢𝗽𝘀 𝗽𝗿𝗼𝗷𝗲𝗰𝘁 🚀
 
