@@ -4,7 +4,7 @@ services:
     build:
       context: ./frontend
       args:
-      - REACT_APP_BACKEND_URL=http://localhost:5000/api/tasks
+      - REACT_APP_BACKEND_URL=http://backend:5000/api/tasks
     ports:
       - "3000:80"
     depends_on:
