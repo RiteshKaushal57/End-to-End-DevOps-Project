@@ -1,0 +1,23 @@
+controller:
+  admin:
+    username: admin
+    password: admin123   # we’ll change later
+
+  installPlugins:
+    - kubernetes
+    - workflow-aggregator
+    - git
+    - github
+    - docker-workflow
+    - credentials
+    - credentials-binding
+    - pipeline-stage-view
+    - sonar
+    - configuration-as-code
+    - blueocean
+    - job-dsl
+
+  serviceType: NodePort
+
+  JCasC:
+    enabled: true
