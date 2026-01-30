@@ -11,8 +11,8 @@ postgresql:
 persistence:
   enabled: false
 
-sonarqube:
-  monitoringPasscode: sonar123
+monitoringPasscodeSecretName: sonarqube-monitoring
+monitoringPasscodeSecretKey: monitoringPasscode
 
 resources:
   requests:
