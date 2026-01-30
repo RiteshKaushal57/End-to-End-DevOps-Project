@@ -1,0 +1,23 @@
+community:
+  enabled: true
+
+postgresql:
+  enabled: true
+  auth:
+    username: sonar
+    password: sonar
+    database: sonarqube
+
+persistence:
+  enabled: false
+
+sonarqube:
+  monitoringPasscode: sonar123
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "2Gi"
+  limits:
+    cpu: "1"
+    memory: "3Gi"
