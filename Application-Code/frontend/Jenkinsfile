@@ -60,7 +60,6 @@ stage('Install Dependencies') {
   }
 }
 
-
         stage('Unit Tests') {
             steps {
                 dir('Application-Code/frontend') {
@@ -68,6 +67,23 @@ stage('Install Dependencies') {
                 }
             }
         }
+stage('SonarQube Analysis') {
+    environment {
+        SCANNER_HOME = tool 'sonar-scanner'
+    }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh """
+              ${SCANNER_HOME}/bin/sonar-scanner \
+              -Dsonar.projectKey=frontend-app \
+              -Dsonar.projectName=frontend-app \
+              -Dsonar.sources=src \
+              -Dsonar.language=js \
+              -Dsonar.sourceEncoding=UTF-8
+            """
+        }
+    }
+}
 
         stage('Quality Gate') {
             steps {
