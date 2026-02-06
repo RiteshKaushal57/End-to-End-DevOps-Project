@@ -1,23 +1,26 @@
 controller:
   admin:
     username: admin
-    password: admin123   # we’ll change later
+    password: admin123
+
+  serviceType: ClusterIP
+
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "1"
+      memory: "2Gi"
 
   installPlugins:
     - kubernetes
     - workflow-aggregator
     - git
-    - github
-    - docker-workflow
-    - credentials
-    - credentials-binding
-    - pipeline-stage-view
-    - sonar
     - configuration-as-code
-    - blueocean
-    - job-dsl
+    - credentials
+    - sonar
+    - docker-workflow
 
-  serviceType: NodePort
-
-  JCasC:
-    enabled: true
+persistence:
+  enabled: false
