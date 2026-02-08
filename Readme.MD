@@ -20,3 +20,13 @@ helm install sonarqube sonarqube/sonarqube \
 taskkill /IM "Docker Desktop.exe" /F
 taskkill /IM "com.docker.backend.exe" /F
 taskkill /IM "com.docker.proxy.exe" /F
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+wsl --install --no-distribution
+wsl --update
+
+wsl --status
+
+Get-Service *lxss*

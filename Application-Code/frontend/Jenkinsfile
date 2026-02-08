@@ -88,12 +88,15 @@ stage('SonarQube Analysis') {
                 sh """
                 ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                   -Dsonar.projectKey=frontend \
-                  -Dsonar.sources=.
+                  -Dsonar.projectName=frontend \
+                  -Dsonar.sources=src \
+                  -Dsonar.language=js
                 """
             }
         }
     }
 }
+
 
 
         stage('Quality Gate') {
