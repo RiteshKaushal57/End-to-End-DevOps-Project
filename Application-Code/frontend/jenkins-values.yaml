@@ -22,14 +22,13 @@ controller:
     - sonar
     - docker-workflow
 
-  additionalVolumes:
-    - name: npm-cache
-      persistentVolumeClaim:
-        claimName: jenkins-npm-cache
-
+  # Mount npm cache inside persistent Jenkins home
   additionalVolumeMounts:
-    - name: npm-cache
+    - name: jenkins-home
       mountPath: /home/jenkins/.npm
+      subPath: .npm
 
 persistence:
-  enabled: false
+  enabled: true
+  size: 8Gi
+  storageClass: standard
