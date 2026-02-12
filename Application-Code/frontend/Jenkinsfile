@@ -84,7 +84,7 @@ spec:
         SONAR_SCANNER_HOME = tool 'sonar-scanner'
       }
       steps {
-        container('node') {
+        container('maven') {
           dir('Application-Code/frontend') {
             withSonarQubeEnv('sonarqube-server') {
               sh """
