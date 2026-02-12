@@ -22,9 +22,6 @@ controller:
     - sonar
     - docker-workflow
 
-persistence:
-  enabled: false
-
   additionalVolumes:
     - name: npm-cache
       persistentVolumeClaim:
@@ -34,3 +31,5 @@ persistence:
     - name: npm-cache
       mountPath: /home/jenkins/.npm
 
+persistence:
+  enabled: false
