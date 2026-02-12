@@ -56,19 +56,23 @@ stage('Install Dependencies') {
   steps {
     dir('Application-Code/frontend') {
       sh '''
+        echo "Using persistent npm cache..."
+
+        npm config set cache /root/.npm
+        npm config set registry https://registry.npmjs.org/
         npm config set fund false
         npm config set audit false
+        npm config set fetch-retries 5
+        npm config set fetch-retry-mintimeout 20000
+        npm config set fetch-retry-maxtimeout 120000
+        npm config set network-timeout 600000
 
-        if [ -d node_modules ]; then
-          echo "Reusing cached dependencies"
-          npm rebuild
-        else
-          npm ci --prefer-offline
-        fi
+        npm ci --prefer-offline --no-audit --progress=false
       '''
     }
   }
 }
+
 
 
         stage('Unit Tests') {

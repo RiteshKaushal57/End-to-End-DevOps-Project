@@ -24,3 +24,13 @@ controller:
 
 persistence:
   enabled: false
+
+  additionalVolumes:
+    - name: npm-cache
+      persistentVolumeClaim:
+        claimName: jenkins-npm-cache
+
+  additionalVolumeMounts:
+    - name: npm-cache
+      mountPath: /home/jenkins/.npm
+
