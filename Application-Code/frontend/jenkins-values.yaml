@@ -22,8 +22,7 @@ controller:
     - sonar
     - docker-workflow
 
-  # Mount npm cache inside persistent Jenkins home
-  additionalVolumeMounts:
+  containerVolumeMounts:
     - name: jenkins-home
       mountPath: /home/jenkins/.npm
       subPath: .npm
