@@ -1,4 +1,5 @@
 pipeline {
+  pipeline {
   agent {
     kubernetes {
       yaml """
@@ -6,22 +7,22 @@ apiVersion: v1
 kind: Pod
 spec:
   containers:
-    - name: ci
-      image: ritesh57/ci-tools:latest
-      command:
-        - cat
-      tty: true
-      volumeMounts:
-        - name: docker-sock
-          mountPath: /var/run/docker.sock
+  - name: node
+    image: node:18
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+    - name: npm-cache
+      mountPath: /home/jenkins/.npm
   volumes:
-    - name: docker-sock
-      hostPath:
-        path: /var/run/docker.sock
+  - name: npm-cache
+    persistentVolumeClaim:
+      claimName: jenkins
 """
-      defaultContainer 'ci'
     }
   }
+
 
 
     environment {
