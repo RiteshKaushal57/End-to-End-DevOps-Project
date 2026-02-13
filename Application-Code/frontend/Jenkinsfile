@@ -8,15 +8,30 @@ kind: Pod
 spec:
   containers:
     - name: node
-      image: node:20
-      command:
-      - cat
-      tty: true
+  image: node:20
+  command: ['cat']
+  tty: true
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+
 
     - name: sonar
-      image: sonarsource/sonar-scanner-cli:latest
-      command: ['cat']
-      tty: true
+  image: sonarsource/sonar-scanner-cli:latest
+  command: ['cat']
+  tty: true
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+
 
     - name: maven
       image: maven:3.9-eclipse-temurin-17
@@ -93,13 +108,15 @@ spec:
             sonar-scanner \
               -Dsonar.projectKey=frontend \
               -Dsonar.projectName=frontend \
-              -Dsonar.sources=src
+              -Dsonar.sources=src \
+              -Dsonar.javascript.node.maxspace=2048
           '''
         }
       }
     }
   }
 }
+
 
 
     stage('Quality Gate') {
