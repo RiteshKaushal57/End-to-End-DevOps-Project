@@ -13,6 +13,11 @@ spec:
       - cat
       tty: true
 
+    - name: sonar
+      image: sonarsource/sonar-scanner-cli:latest
+      command: ['cat']
+      tty: true
+
     - name: maven
       image: maven:3.9-eclipse-temurin-17
       command:
@@ -80,24 +85,22 @@ spec:
     }
 
     stage('SonarQube Analysis') {
-      environment {
-        SONAR_SCANNER_HOME = tool 'sonar-scanner'
-      }
-      steps {
-        container('maven') {
-          dir('Application-Code/frontend') {
-            withSonarQubeEnv('sonarqube-server') {
-              sh """
-                ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-                  -Dsonar.projectKey=frontend \
-                  -Dsonar.projectName=frontend \
-                  -Dsonar.sources=src
-              """
-            }
-          }
+  steps {
+    container('sonar') {
+      dir('Application-Code/frontend') {
+        withSonarQubeEnv('sonarqube-server') {
+          sh '''
+            sonar-scanner \
+              -Dsonar.projectKey=frontend \
+              -Dsonar.projectName=frontend \
+              -Dsonar.sources=src
+          '''
         }
       }
     }
+  }
+}
+
 
     stage('Quality Gate') {
       steps {
